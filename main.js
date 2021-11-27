@@ -20,19 +20,30 @@ var modal_profil = document.getElementById("profil_modal");
 var category_modal = document.getElementById("category-modal");
 var main_modal = document.getElementById("task-modal");
 var bloc_task = document.getElementById("all_tasks");
+var main_modal = document.getElementById("task-modal");
+var btn_open_main_modal = document.getElementById("add-task-plus");
+var btn_close_main_modal = document.getElementById('closeModal');
+var md_btn_reset_task = document.getElementById("md-btn-reset-task");
+var btn_open_modal_cat = document.getElementById("add-cat-plus");
+var btn_close_modal_cat = document.getElementById('closeModalCategory');
+var btn_reset_cat = document.getElementById('md-btn-reset_cat');
 
+
+
+//function to close a modal
+function closeModal(modal) {
+    modal.setAttribute("style", "display : none");
+    body.removeAttribute('style');
+}
 
 
 //function for create modal 
 function createModal (modal) {
     modal.removeAttribute("style");
     body.setAttribute('style', 'background-color: rgba(0, 0, 0, 0.3)');
-}
-
-//function to close a modal
-function closeModal(modal) {
-    modal.setAttribute("style", "display : none");
-    body.removeAttribute('style');
+    window.addEventListener("focus", function() {
+        closeModal(modal);
+    }, false);
 }
 
 //function notify user
@@ -82,6 +93,19 @@ var getStorageContentTask = function () {
     if(res !== null) return res;
     else return []; 
 };
+
+//MANAGE CATEGORIES
+btn_open_modal_cat.addEventListener('click', function() {
+    createModal(category_modal);
+}, false);
+
+btn_close_modal_cat.addEventListener('click', function(){
+    closeModal(category_modal);
+});
+
+btn_reset_cat.addEventListener("click", function(){
+    closeModal(category_modal);
+});
 
 //SET THE CATEGORIES IN THE MAIN ARRAY
 var setMainArray = function (categories) {
@@ -166,6 +190,18 @@ md_btn_add_cat.addEventListener('click', function () {
 
 
 ///MANAGE TASKS
+
+btn_open_main_modal.addEventListener("click", function() {
+    createModal(main_modal);
+}, false);
+
+btn_close_main_modal.addEventListener("click", function (){
+    closeModal(main_modal);
+}, false);
+
+md_btn_reset_task.addEventListener("click", function() {
+    closeModal(main_modal);
+}, false);
 
 //function create task
 var createTask = function (name, desc="", done="false", cat) {
@@ -1067,14 +1103,3 @@ btnNotif.addEventListener('click', function(){
     notif.setAttribute('style', 'display: none;');
 });
 /*_________________________________________/MODAL DE NOTIFICATION______________________________________________*/
-
-
-var btnCloseModalCat = document.getElementById('closeModalCategory');
-btnCloseModalCat.addEventListener('click', function(){
-    closeModal(category_modal);
-});
-
-var btn_reset_cat = document.getElementById('btn-reset_cat');
-btn_reset_cat.addEventListener("click", function(){
-    closeModal(category_modal);
-});

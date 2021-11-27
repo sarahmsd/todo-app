@@ -1,0 +1,375 @@
+/*************************************** NAVBAR *************************************************/
+#navbar{
+    display: inline-block;
+    width: 100%;
+    background-color: #1856b4;
+    padding-top: 2%;  
+    padding-bottom: 2%; 
+}
+
+#nav-right{
+    float: right;
+    align-items: center;
+    width: 15%;
+}
+
+#nav-right a{
+    text-decoration: none;
+}
+
+#nav-left{
+    padding-right: 1%;
+    padding-left: 2%;
+    float: left;
+    align-items: center;     
+}
+
+.fas.fa-bars{
+    margin-left: 15px;;
+    padding-right: 8px;
+}
+
+.fas.fa-bell, .fas.fa-plus, .fas.fa-question, .fa.fa-sign-out{
+    margin-left: 15px;;
+    padding-right: 8px;
+}
+
+#navbar div .fas, #navbar div .fa{    
+    color: #fafafa;
+}
+
+#nav-center{
+    float: left;
+    align-items: center;
+    width: 10%;     
+}
+
+#nav-center input{
+    background-size: 15px;
+    background-repeat: no-repeat;    
+    background-image: url(search.png);
+    border: none;
+    width: 210px;
+    background-color: #fafafa;
+}
+
+#nav-center input:focus{      
+    background-size: 0;
+    border: none;
+}
+/*************************************** /NAVBAR *************************************************/
+
+/*************************************** SIDEBAR *************************************************/
+#sidebar{
+    float: left;
+    width: 22%;
+    background-color: #fafafa;
+    margin-top: -4px;
+    z-index: -100;
+    height: 700px;
+    position: fixed;
+    overflow: auto;
+}
+
+#sidebar div ul li{
+    list-style: none;    
+}
+
+#sidebar div ul li a{
+    text-decoration: none;
+    color: black;
+    display: inline-block;    
+    width: 90%; 
+    height: 30px;
+    padding: 10px; 
+    border-radius: 5px;
+}
+
+#sidebar div ul li a i.fas{
+    margin-right: 10px;
+}
+
+#sidebar div ul li a:hover{
+    background-color: #eee;
+}
+
+#sidebar div ul li a:focus{
+    background-color: #eee;
+}
+
+.diviser{
+    width: 75%;
+    margin-left: 20%;
+    height: 0%;
+    border-color: #fafafa;
+}
+/*************************************** /SIDEBAR *************************************************/
+
+/*************************************** main-content *************************************************/
+#page-content{
+    display: inline-block;
+}
+
+#main-content{
+    width: 63%;
+    float: right;
+    padding-left: 7%;
+    padding-right: 7%;
+}
+/*************************************** /main-content *************************************************/
+
+/*************************************** ADD TASK *************************************************/
+.form-row{
+    border: 1px solid #fafafa;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.form-row .form-class{
+    width: 600px;
+    border: none;
+    height: 40px;
+    margin-bottom: 5px;
+}
+
+.form-row-cat .form-class{
+    width: 330px;
+    border: none;
+    height: 26px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+.form-row input:focus{    
+    border: none;
+}
+
+.form-row-cat .form-class:focus{    
+    border-color: #eee;
+}
+
+.banderolle{
+    display: inline-block;
+    background-color: #1856b4;   
+    height: 20px;
+    padding: 5px;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+.btn-add, .btn-reset{
+    border: 1px solid #fafafa;
+    margin-top: 5px;
+    height: 30px;
+    border-radius: 5px;
+}
+
+.btn-add{
+    background-color: #1856b4;
+    color: #fafafa;        
+}
+
+.btn-reset{
+    background-color: #ffff;
+    color: #000;
+}
+
+.new{
+    color: #eee;
+
+}
+
+.new:hover, .new:focus{
+    color: #1856b4;
+    text-decoration: none;
+    cursor: pointer;
+}
+/*************************************** /ADD TASK *************************************************/
+
+/*************************************** LISTETASK *************************************************/
+.task{
+    display: inline-block;
+    width: 800px;
+    margin: 0;
+}
+
+.task hr{
+    border-color: #fafafa;
+    margin: 0;
+}
+
+.right-bloc, .right-bloc-cat{
+    display: none;
+    float: right;
+}
+
+.task:hover .right-bloc{
+    display: unset;
+}
+
+.li-cat:hover .right-bloc-cat{
+    display: unset;
+}
+
+.sous-bloc{
+    float: right;
+    padding-right: 5px;
+    margin-top: -15px;
+}
+
+.sous-bloc i{
+    margin-right: 10px;
+}
+
+.checkbox::before, .checkbox::after{
+    box-sizing: border-box;
+    border-radius: 50%;
+}
+
+.checkbox::before {
+    display: block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #f5f5f5;  
+}
+
+.checkbox::after {
+    display: none;
+    width: 12px;
+    height: 12px;
+    margin: 4px;
+    background-color: #c6c3bd;
+}
+
+.task-modal{
+    width: 900px;
+    margin: 21%;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    overflow: auto;
+    background-color: #ffff;
+    border-radius: 10px;
+    padding: 2%;
+    padding-top: 0%;
+    margin-left: 25%;
+}
+
+.close{
+    color: #1856b4;
+    float: right;
+    font-size: 20px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.close:hover, .close:focus, .close-notif{
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.notif{
+    width: 25%;
+    margin: 40%;
+    margin-top: 45%;
+    position: fixed;
+    left: 0%;
+    top: 0%;
+    padding: 1%;
+    background-color: #1856b4; 
+    border-radius: 5px;
+}
+
+.close-notif{
+    color: #000;
+    text-decoration: none;
+    float: right;       
+}
+
+.category-modal{
+    width: 400px;
+    position: fixed;
+    left: 0%;
+    top: 0%;
+    margin-top: 10%;
+    margin-left: 20%;
+    overflow: auto;
+    background-color: #ffff;
+    border-radius: 10px;
+    padding: 2%;
+    padding-top: 0%;
+    margin-left: 25%;
+}
+
+.logout-modal{
+    width: 310px;
+    position: fixed;
+    left: 0%;
+    top: 0%;
+    margin-top: 4%;
+    margin-left: 75%;
+    overflow: auto;
+    background-color: #ffff;
+    border-radius: 10px;
+    padding: 2%;
+    padding-top: 0%;    
+}
+
+
+.edit-pass-modal{
+    width: 310px;
+    position: fixed;
+    left: 0%;
+    top: 0%;
+    margin-top: 4%;
+    margin-left: 75%;
+    overflow: auto;
+    background-color: #ffff;
+    border-radius: 10px;
+    padding: 2%;
+    padding-top: 0%;
+}
+
+.row{
+    display: inline-block;
+    padding-right: 2%;
+    padding-bottom: 3%;
+}
+
+.row label{
+    float: left;
+    width: 330px;
+    padding-bottom: 1%;
+}
+/*************************************** LISTETASK *************************************************/
+
+/*************************************** CONNEXION/INSCRIPTION *************************************************/
+#inscription, #connexion{
+    display: inline-block;
+    margin: 20%;
+    margin-top: 5%;
+    padding: 2%;
+    width: 700px;
+    border-radius: 5px;
+    background-color: #1856b4;   
+    color: #fafafa; 
+}
+
+#inscription.header, #connexion.header{    
+    background-color: #fafafa;   
+    color: #1856b4; 
+}
+
+#inscription input, #connexion input{
+    border-color: #fafafa;
+    width: 310px;
+    border-radius: 5px;
+}
+
+#inscription input.btn, #connexion input.btn{
+    width: 200px;
+    border-radius: 5px;
+    color: black;
+}
+

@@ -89,6 +89,14 @@
     margin-right: 10px;
 }
 
+.badge{
+    margin-left: 10px;
+    height: 15px;
+    border-radius: 2px;
+    background-color: #eee;
+    padding: 2px;
+}
+
 #sidebar div ul li a:hover{
     background-color: #eee;
 }

@@ -538,13 +538,23 @@ for(let item of all_li_menu_bloc){
     });
 }
 
-
+////////////////////////////////////BADGE DE NBRE DE TACHE ACCOMPLIES////////////////////////////////////////////
+var get_badge = function(cat) {
+    let total = cat.tasks.length;
+    let done = 0;
+    cat.tasks.forEach((item) =>{
+        if(item.done === true){
+            done = done + 1;
+        }
+    });
+    return done+" / "+total;
+};
 
 var sidebar_cats = document.getElementById("list-cat");
 
 //function to display categories of user in the sidebar
 function displayCats(cats) {
-    let li, a, i;
+    let li, a, i, i_delete, i_edit, badge;
     sidebar_cats.innerHTML = "";
     cats.forEach(item =>{
         li = createElement('li');
@@ -552,6 +562,9 @@ function displayCats(cats) {
         a = createElement('a');
         i = createElement('i');
         i.className = "fas fa-"+item.icone;
+        badge = createElement("i");
+        badge.className = "badge";
+        stuffElement(badge, get_badge(item));
 
         span = createElement("span");
         span.className = "right-bloc-cat"; 
@@ -566,6 +579,8 @@ function displayCats(cats) {
         a.appendChild(i);
 
         stuffElement(a, item.name);
+
+        a.appendChild(badge);
 
         span.appendChild(i_edit);
         span.appendChild(i_delete);        
@@ -1103,3 +1118,4 @@ btnNotif.addEventListener('click', function(){
     notif.setAttribute('style', 'display: none;');
 });
 /*_________________________________________/MODAL DE NOTIFICATION______________________________________________*/
+

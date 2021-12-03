@@ -54,7 +54,7 @@ function notify_user(message="", color="") {
     if(color === "success") notif.setAttribute('style', 'background-color: green;');
     if(color === "danger") notif.setAttribute('style', 'background-color: red;');
     if(color === "warning") notif.setAttribute('style', 'background-color: yellow;');
-    stuffElement(notif.firstElementChild.firstElementChild, message);   
+    stuffElement(notif.firstElementChild.firstElementChild, message);  
 }
 
 //LOCAL STORAGE FUNCTIONS
@@ -193,6 +193,8 @@ md_btn_add_cat.addEventListener('click', function () {
 
 btn_open_main_modal.addEventListener("click", function() {
     createModal(main_modal);
+    LocalStorageToArray("CATEGORIES");
+    stuffCatsInSelect(CATEGORIES);
 }, false);
 
 btn_close_main_modal.addEventListener("click", function (){
@@ -467,8 +469,8 @@ var getCatByUser = function (user) {
 
 
 //FUNCTION TO LIST TASKS BY CAT
-var listTaskByCat = function(e){
-    let cat_name = e.target.firstElementChild.nextSibling.textContent;
+var listTaskByCat = function(e){    
+    let cat_name = e.target.firstElementChild.nextSibling.textContent;    
     let c = false;
     //Stuff the ARRAYS WHITH STORAGE CONTENT
     LocalStorageToArray("TABLEAU");
@@ -573,7 +575,8 @@ function displayCats(cats) {
         i_edit.className = "fas fa-pen";        
 
         i_delete = createElement('i');    
-        i_delete.className = "fas fa-trash";        
+        i_delete.className = "fas fa-trash";
+              
 
         a.setAttribute("href","#"+item.name);
         a.appendChild(i);
@@ -585,7 +588,18 @@ function displayCats(cats) {
         span.appendChild(i_edit);
         span.appendChild(i_delete);        
         a.appendChild(span);            
-        li.appendChild(a);
+        li.appendChild(a);        
+
+        i_delete.addEventListener("click", function(e){
+            delete_category(e.target);
+        });
+
+        i_edit.addEventListener("click", function (e) {
+            showEditZone(createEditZoneForCat(getSelectedCat(e.target), e.target), e.target.parentNode.parentNode);
+            e.target.parentNode.parentNode.setAttribute("style", "display:none;");
+            e.target.parentNode.setAttribute("style", "display: none;");
+        });
+
         li.addEventListener("click", function(e){
             listTaskByCat(e);
         });
@@ -605,13 +619,24 @@ function createDivTask(div, hr, p1, input, span, p2, i1, i2, i3, i, item) {
     input.className = "checkbox";
     input.setAttribute("type", "checkbox");
     input.setAttribute("name", "done");
-    input.setAttribute("id", "checkbox");    
+    input.setAttribute("id", "checkbox"); 
+    input.addEventListener('click', function(e){
+        done_task(e);
+    }); 
     span = createElement("span");
     span.className = "right-bloc";
     i1 = createElement("i");
-    i1.className = "fa fa-edit";         
+    i1.className = "fa fa-edit";
+    i1.addEventListener("click", function(e){
+        showEditZone(createEditZone(getSelectedTask(e.target), e.target), e.target.parentNode.parentNode);
+        e.target.parentNode.parentNode.setAttribute("style", "display:none;");
+        e.target.parentNode.parentNode.nextElementSibling.setAttribute('style', "display:none");
+    });      
     i2 = createElement("i");
-    i2.className = 'fa fa-trash';             
+    i2.className = 'fa fa-trash';
+    i2.addEventListener('click', function(e){
+        delete_task(e);
+    });           
     i3 = createElement("i");
     i3.className = "fa fa-flag";
     if(i.done === true){
@@ -763,22 +788,39 @@ var btn_edit_all = bloc_task.getElementsByClassName("fa-edit");
 
 //function to get the selected task
 var getSelectedTask = function (item) {
-    var span = item.parentNode;
-    var p = span.parentNode;
-    var checked = p.firstElementChild;
-    var task_name = checked.nextSibling;
-    return task_name.textContent;
+    let p = item.parentNode;
+    let checked = p.firstElementChild;
+    console.log(p.parentNode.firstElementChild.nextSibling.textContent);
+    let task_name = checked.nextSibling.textContent;
+    if(task_name == "" || task_name == undefined){
+        task_name = p.parentNode.firstElementChild.nextSibling.textContent;
+    }
+    let task;
+    LocalStorageToArray("USER");
+    LocalStorageToArray("TABLEAU");
+    TABLEAU.forEach((item2) =>{
+        if(item2.user.username === USER.username){
+            item2.categories.forEach((item1) => {
+                item1.tasks.forEach((i) =>{
+                    console.log(task_name);
+                    if(i.name === task_name) task = i;
+                });
+            });
+        }
+    });
+    return task;
 };
 
 //function to create edit zone
-var createEditZone = function (task_name, item) {
+var createEditZone = function (task, item) {
+    console.log(task);
     let div = createElement("div");
     div.setAttribute("id","edit_zone");
     div.setAttribute("style", "dsiplay : none;");
     let p = createElement("p");
     let input = createElement("input");
     input.type = "text";
-    input.value = task_name;
+    input.value = task.name;
     input.className = "form-class";
     input.setAttribute("style", "width: 600px;");
     let btn_add = createElement("input");
@@ -786,7 +828,7 @@ var createEditZone = function (task_name, item) {
     btn_add.value="editer";
     btn_add.className = "btn-class";
     btn_add.addEventListener("click", function(e){
-        validate_edit(e, task_name);
+        validate_edit(e, task.name);
     });
     let btn_reset = createElement('input');
     btn_reset.type = "button";
@@ -853,14 +895,6 @@ function reset_edit(item, e) {
     e.target.parentNode.setAttribute("style", "display: none;");
 }
 
-for(let item of btn_edit_all){
-    item.addEventListener('click', function (e) {                
-        showEditZone(createEditZone(getSelectedTask(item), item), item.parentNode.parentNode);
-        item.parentNode.parentNode.setAttribute("style", "display:none;");
-        item.parentNode.parentNode.nextElementSibling.setAttribute('style', "display:none");
-    });
-}
-
 
 
 
@@ -904,28 +938,28 @@ function delete_task (e){
     }
 }
 
-var btn_delete_all = bloc_task.getElementsByClassName("fa-trash");
-
-for(let item of btn_delete_all){
-    item.addEventListener('click', function (e) {
-        delete_task(e);
-    });
-}
-
 
 
 
 ///////EDIT CATEGORY
 
-var getSelectedCat = function(item){   
-    var span = item.parentNode;
-    var a = span.parentNode;
-    var cat_name = a.firstElementChild.nextSibling.textContent;
-    return cat_name;
+var getSelectedCat = function(item){ 
+    let span = item.parentNode;
+    let a = span.parentNode;
+    let cat_name = a.firstElementChild.nextSibling.textContent;
+    let cat;
+    LocalStorageToArray("CATEGORIES");
+    CATEGORIES.forEach((item) =>{
+        if(item.name === cat_name) cat = item;
+    });
+    return cat;
 }
 
 function edit_category(e, cat_to_edit){
     let cat_name = e.target.parentNode.firstElementChild.value;
+    let cat_icone = e.target.parentNode.firstElementChild.nextElementSibling.nextSibling.value;
+    let cat_color = e.target.parentNode.firstElementChild.nextSibling.value;
+    console.log(cat_icone, cat_color);
     let c1 = false; let c2 = false; //Variable de confirmation pour le TABLEAU et les CATEGORIES    
     LocalStorageToArray("TABLEAU");
     LocalStorageToArray("CATEGORIES");
@@ -933,8 +967,10 @@ function edit_category(e, cat_to_edit){
     TABLEAU.forEach((item) =>{
         if(item.user.username === USER.username){
             item.categories.forEach((item1) =>{
-                if(item1.name === cat_to_edit){
+                if(item1.name === cat_to_edit.name){
                     item1.name = cat_name;
+                    item1.color = cat_color;
+                    item1.icone = cat_icone;
                     c1 = true;
                 }
             });
@@ -942,8 +978,10 @@ function edit_category(e, cat_to_edit){
     });    
 
     CATEGORIES.forEach((item) =>{
-        if(item.name === cat_to_edit){
+        if(item.name === cat_to_edit.name){
             item.name = cat_name;
+            item.color = cat_color;
+            item.icone = cat_icone;
             c2 = true;
         }
     });
@@ -966,19 +1004,30 @@ function hide_zone(zone_to_hide, zone_to_show){
     zone_to_show.removeAttribute("style");
 }
 
-var createEditZoneForCat = function(cat_name, zone_to_hide){
+var createEditZoneForCat = function(cat, zone_to_hide){
     let p = createElement("p");
     let input = createElement("input");
     input.type = "text";
-    input.value = cat_name;
-    input.setAttribute("style", "whidth: 150px;");
+    input.value = cat.name;
+    input.setAttribute("style", "whidth: 200px;");
     input.className = "form-class";
+
+    let color = createElement("input");
+    color.value = cat.color;
+    color.className = "form-class";
+    color.setAttribute("style", "whidth: 200px;");
+
+    let icone = createElement("input");
+    icone.value = cat.icone;
+    icone.className = "form-class";
+    icone.setAttribute("style", "whidth: 200px;");
+
     let btn_edit = createElement('input');
     btn_edit.type = "button";
     btn_edit.value = "Modifier";
     btn_edit.className = "btn-add";
     btn_edit.addEventListener('click', function(e){
-        edit_category(e, cat_name);
+        edit_category(e, cat);
         hide_zone(p, zone_to_hide.parentNode.parentNode)
     });
     let btn_reset = createElement("input");
@@ -992,6 +1041,8 @@ var createEditZoneForCat = function(cat_name, zone_to_hide){
     });
 
     p.appendChild(input);
+    p.appendChild(color);
+    p.appendChild(icone);
     p.appendChild(btn_edit);
     p.appendChild(btn_reset);
     
@@ -1000,15 +1051,6 @@ var createEditZoneForCat = function(cat_name, zone_to_hide){
 
 var bloc_cat = document.getElementById("first");
 var btn_edit_all_cat = bloc_cat.getElementsByClassName("fa-pen");
-
-for(let item of btn_edit_all_cat){
-    item.addEventListener('click', function (e) {                
-        showEditZone(createEditZoneForCat(getSelectedCat(e.target), item), item.parentNode.parentNode);
-        item.parentNode.setAttribute("style", "display:none;");
-        item.parentNode.parentNode.setAttribute("style", "display: none;");
-    });
-}
-
 
 
 //FUNCTIONS TO DELETE CAT
@@ -1021,7 +1063,7 @@ function delete_category (e){
     TABLEAU.forEach((item) =>{
         if(item.user.username === USER.username){
             item.categories.forEach((item1, index) =>{                  
-                if(item1.name === cat_to_delete){                                            
+                if(item1.name === cat_to_delete.name){                                            
                     item.categories.splice(index, 1);   
                     c1 = true;  
                 }
@@ -1030,8 +1072,7 @@ function delete_category (e){
     });
     
     CATEGORIES.forEach((item, index) =>{
-        console.log(item);
-        if(item.name === cat_to_delete){
+        if(item.name === cat_to_delete.name){
             CATEGORIES.splice(index, 1);
             c2 = true;
         }
@@ -1050,18 +1091,13 @@ function delete_category (e){
 };
 
 var btn_delete_all_cat = bloc_cat.getElementsByClassName("fa-trash");
-for(let item of btn_delete_all_cat){
-    item.addEventListener('click', function (e) {
-        delete_category(e);
-    });
-}
-
 
 
 
 //FUNCTION TO MAKE TASK DONE
 function done_task(e){
     let task_to_done = getSelectedTask(e.target);
+    console.log(task_to_done);
     let c1 = false; let c2 = false; //Variable de confirmation pour le TABLEAU et les CATEGORIES
     LocalStorageToArray("TABLEAU");
     LocalStorageToArray("CATEGORIES");
@@ -1070,7 +1106,7 @@ function done_task(e){
         if(item.user.username === USER.username){
             item.categories.forEach((item1) =>{
                 item1.tasks.forEach((item2) =>{
-                    if(item2.name === task_to_done){
+                    if(item2.name === task_to_done.name){
                         item2.done = e.target.checked;
                         c1 = true;
                     }
@@ -1081,7 +1117,7 @@ function done_task(e){
 
     CATEGORIES.forEach((item) =>{
         item.tasks.forEach((item2) =>{
-            if(item2.name === task_to_done){
+            if(item2.name === task_to_done.name){
                 item2.done = e.target.checked;
                 c2 = true;
             }
@@ -1097,16 +1133,6 @@ function done_task(e){
         notify_user("Echec", "danger");
     }
 }
-
-var all_checkbox_task = bloc_task.getElementsByClassName("checkbox");
-
-for(let item of all_checkbox_task){
-    item.addEventListener('click', function (e) {                
-        done_task(e);
-    });
-}
-
-
 
 
 

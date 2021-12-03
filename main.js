@@ -242,7 +242,8 @@ var addTask = function (task) {
         LocalStorageToArray("TASKS");
         if(Object.keys(task).length !== 0) TASKS.push(task);
         setStorageContentTask(TASKS);
-        displayTaks(CATEGORIES);        
+        displayTaks(CATEGORIES);
+        displayCats(CATEGORIES);
         notify_user("Tâche ajoutée avec succès", "success");
     } 
 };
@@ -931,6 +932,7 @@ function delete_task (e){
             setLocalStorageContent(TABLEAU);
             setStorageContentCat(CATEGORIES);
             displayTaks(CATEGORIES);
+            displayCats(CATEGORIES);
             notify_user("Suppression de la tâche réussie!!", "success");
         }
     }else{
@@ -1082,7 +1084,7 @@ function delete_category (e){
             setLocalStorageContent(TABLEAU);
             setStorageContentCat(CATEGORIES);
             displayTaks(CATEGORIES);
-            displayCats(getCatByUser(USER));
+            displayCats(CATEGORIES);
             notify_user("Suppression de la catégorie réussie!!", "success");
         }
     }else{
@@ -1097,7 +1099,7 @@ var btn_delete_all_cat = bloc_cat.getElementsByClassName("fa-trash");
 //FUNCTION TO MAKE TASK DONE
 function done_task(e){
     let task_to_done = getSelectedTask(e.target);
-    console.log(task_to_done);
+    let undone = false;
     let c1 = false; let c2 = false; //Variable de confirmation pour le TABLEAU et les CATEGORIES
     LocalStorageToArray("TABLEAU");
     LocalStorageToArray("CATEGORIES");
@@ -1119,16 +1121,21 @@ function done_task(e){
         item.tasks.forEach((item2) =>{
             if(item2.name === task_to_done.name){
                 item2.done = e.target.checked;
+                if(e.target.checked === false) undone = true;
                 c2 = true;
             }
         });
     });
 
     if(c1 === true && c2 === true){
+        let msg = "";
         setLocalStorageContent(TABLEAU);
         setStorageContentCat(CATEGORIES);
         displayTaks(CATEGORIES);
-        notify_user("Tâche Accomplie", "success");
+        displayCats(CATEGORIES);
+        if(undone === true) msg = "Tâche marquée comme non accomplie";
+        else msg = "Tâche marquée comme accomplie";
+        notify_user(msg, "success");
     }else{
         notify_user("Echec", "danger");
     }

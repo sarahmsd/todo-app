@@ -27,7 +27,7 @@ var md_btn_reset_task = document.getElementById("md-btn-reset-task");
 var btn_open_modal_cat = document.getElementById("add-cat-plus");
 var btn_close_modal_cat = document.getElementById('closeModalCategory');
 var btn_reset_cat = document.getElementById('md-btn-reset_cat');
-
+var select_cat_modal = document.getElementById("md-task-category");
 
 
 //function to close a modal
@@ -194,7 +194,7 @@ md_btn_add_cat.addEventListener('click', function () {
 btn_open_main_modal.addEventListener("click", function() {
     createModal(main_modal);
     LocalStorageToArray("CATEGORIES");
-    stuffCatsInSelect(CATEGORIES);
+    stuffCatsInSelect(CATEGORIES, select_cat_modal);
 }, false);
 
 btn_close_main_modal.addEventListener("click", function (){
@@ -596,7 +596,7 @@ function displayCats(cats) {
         });
 
         i_edit.addEventListener("click", function (e) {
-            showEditZone(createEditZoneForCat(getSelectedCat(e.target), e.target), e.target.parentNode.parentNode);
+            showEditZone(createEditZoneForCat(getSelectedCat(e.target), e.target.parentNode.parentNode), e.target.parentNode.parentNode);
             e.target.parentNode.parentNode.setAttribute("style", "display:none;");
             e.target.parentNode.setAttribute("style", "display: none;");
         });
@@ -640,6 +640,14 @@ function createDivTask(div, hr, p1, input, span, p2, i1, i2, i3, i, item) {
     });           
     i3 = createElement("i");
     i3.className = "fa fa-flag";
+    i4 = createElement("i");
+    stuffElement(i4, item.name); 
+    i4.addEventListener("dblclick", function(e){
+        console.log(e.target.parentNode);
+        showEditZone(createEditZoneForTaskCat(getSelectedCat(e.target), e.target.parentNode), e.target.parentNode);
+        e.target.parentNode.setAttribute("style", "display:none;");
+        e.target.setAttribute("style", "display: none;");
+    });
     if(i.done === true){
         input.checked = true;
         input.setAttribute("style", "background-color: green");
@@ -651,7 +659,7 @@ function createDivTask(div, hr, p1, input, span, p2, i1, i2, i3, i, item) {
     span.appendChild(i1);
     span.appendChild(i2);
     p2.appendChild(i3);
-    stuffElement(p2, item.name);            
+    p2.appendChild(i4);          
     div.appendChild(hr);
     div.appendChild(p1);
     div.appendChild(p2);
@@ -695,9 +703,9 @@ function displayDoneTasks(cats, cat_name="") {
     });
 }
 
-function stuffCatsInSelect(cats) {
+function stuffCatsInSelect(cats, select) {
     let option;
-    let select = document.getElementById("md-task-category");
+    //let select = document.getElementById("md-task-category");
     select.innerHTML = "";
     cats.forEach(item =>{
         option = createElement('option');
@@ -745,10 +753,10 @@ btn_new.addEventListener('click', function () {
     task_category.selectedIndex = input;
     console.log(task_category.options); 
     addCategory(createCategory(input.value));
-    stuffCatsInSelect(getCatByUser(USER));
+    stuffCatsInSelect(getCatByUser(USER), select_cat_modal);
     hideInput();
     displayCats(getCatByUser(USER));
-    stuffCatsInSelect(getCatByUser(USER));
+    stuffCatsInSelect(getCatByUser(USER), select_cat_modal);
     displayCatSelectedWhenCreateTask(input.value);
 });
 
@@ -777,7 +785,7 @@ function LocalStorageToArray(t) {
         inscription_div.setAttribute("style", "display: none;");          
         displayCats(getCatByUser(user_signed));
         displayTaks(getCatByUser(user_signed));
-        stuffCatsInSelect(getCatByUser(user_signed));
+        stuffCatsInSelect(getCatByUser(user_signed), select_cat_modal);
         stuffElement(document.getElementById('signed_user'), user_signed.username);
     }    
 })();
@@ -791,7 +799,6 @@ var btn_edit_all = bloc_task.getElementsByClassName("fa-edit");
 var getSelectedTask = function (item) {
     let p = item.parentNode;
     let checked = p.firstElementChild;
-    console.log(p.parentNode.firstElementChild.nextSibling.textContent);
     let task_name = checked.nextSibling.textContent;
     if(task_name == "" || task_name == undefined){
         task_name = p.parentNode.firstElementChild.nextSibling.textContent;
@@ -814,7 +821,6 @@ var getSelectedTask = function (item) {
 
 //function to create edit zone
 var createEditZone = function (task, item) {
-    console.log(task);
     let div = createElement("div");
     div.setAttribute("id","edit_zone");
     div.setAttribute("style", "dsiplay : none;");
@@ -954,6 +960,13 @@ var getSelectedCat = function(item){
     CATEGORIES.forEach((item) =>{
         if(item.name === cat_name) cat = item;
     });
+    
+    if(cat === undefined){
+        cat_name = span.firstElementChild.nextSibling.textContent;
+        CATEGORIES.forEach((item) =>{
+            if(item.name === cat_name) cat = item;
+        });
+    }
     return cat;
 }
 
@@ -961,7 +974,7 @@ function edit_category(e, cat_to_edit){
     let cat_name = e.target.parentNode.firstElementChild.value;
     let cat_icone = e.target.parentNode.firstElementChild.nextElementSibling.nextSibling.value;
     let cat_color = e.target.parentNode.firstElementChild.nextSibling.value;
-    console.log(cat_icone, cat_color);
+    console.log("ici", cat_to_edit);
     let c1 = false; let c2 = false; //Variable de confirmation pour le TABLEAU et les CATEGORIES    
     LocalStorageToArray("TABLEAU");
     LocalStorageToArray("CATEGORIES");
@@ -1006,7 +1019,131 @@ function hide_zone(zone_to_hide, zone_to_show){
     zone_to_show.removeAttribute("style");
 }
 
+var getSelectedItem = function(e){
+    let select = e.target.parentNode.firstElementChild;
+    let selectedItem = select.options[select.selectedIndex].value;
+    return selectedItem;
+}
+
+var getTaskOfTheCat = function(e){
+    let task_name = e.target.parentNode.parentNode.firstElementChild.nextElementSibling.firstElementChild.nextSibling.textContent;
+    return task_name;
+}
+
+var delete_task_to_the_old_cat = function(cat_to_edit, task_name){
+    LocalStorageToArray("TABLEAU");
+    LocalStorageToArray("CATEGORIES");
+    LocalStorageToArray("USER");
+    let task1, task2;
+
+    TABLEAU.forEach((item) =>{
+        if(item.user.username === USER.username){
+            item.categories.forEach((item1) =>{
+                if(item1.name === cat_to_edit.name){
+                    item1.tasks.forEach((t, index) =>{
+                        if(t.name === task_name){
+                            task1 = t;
+                            item1.tasks.splice(index, 1);
+                        }
+                    });                    
+                }
+            }); 
+        }       
+    });
+
+    CATEGORIES.forEach((item) =>{
+        item.tasks.forEach((t, index) =>{
+            if(t.name === task_name){
+                task2 = t;
+                item.tasks.splice(index, 1);
+            }
+        });
+    });
+
+    if(task1.name === task2.name){
+        return task2;
+    }
+}
+
+
+function edit_cat_task(e, cat_to_edit){    
+    let selectedItem = getSelectedItem(e);    
+    let task_name, task;
+    let c1, c2 = false;
+    LocalStorageToArray("TABLEAU");
+    LocalStorageToArray("CATEGORIES");
+    LocalStorageToArray("USER");
+
+    //On verifie que la catégorie a été modifiée
+    console.log(cat_to_edit.name, selectedItem);
+    if(cat_to_edit.name !== selectedItem){
+        //On recupère la tâche en question
+        task = delete_task_to_the_old_cat(cat_to_edit, getTaskOfTheCat(e));        
+        console.log(task);
+        TABLEAU.forEach((item) =>{
+            if(item.user.username === USER.username){
+                item.categories.forEach((item1) =>{
+                    if(item1.name === selectedItem){
+                        item1.tasks.push(task);
+                        c1 = true;
+                    }
+                });
+            }
+        });    
+    
+        CATEGORIES.forEach((item) =>{
+            if(item.name === selectedItem){
+                item.tasks.push(task);
+                c2 = true;
+            }
+        });
+    }          
+
+    if(c1 === true && c2 === true){
+        if(confirm("Valider la modification de la catégorie?")){
+            setLocalStorageContent(TABLEAU);
+            setStorageContentCat(CATEGORIES);
+            displayTaks(CATEGORIES);
+            displayCats(CATEGORIES);
+            notify_user("Modifiaction de la catégorie réussie!!", "warning");
+        }
+    }else{
+        notify_user("Echec de modification de la catégorie", "danger");
+    }
+}
+
+var createEditZoneForTaskCat = function(cat, zone_to_hide){
+    let p = createElement("p");
+    let select = createElement("select");
+    LocalStorageToArray("USER");
+    stuffCatsInSelect(getCatByUser(USER), select);
+    let btn_edit = createElement('input');
+    btn_edit.type = "button";
+    btn_edit.value = "Modifier";
+    btn_edit.className = "btn-add";
+    btn_edit.addEventListener('click', function(e){
+        edit_cat_task(e, cat);
+        hide_zone(p, zone_to_hide)
+    });
+    let btn_reset = createElement("input");
+    btn_reset.type = "button";
+    btn_reset.value = "Annuler";
+    btn_reset.className = "btn-class";
+    btn_reset.addEventListener('click', function(e){
+        hide_zone(p, zone_to_hide);
+        LocalStorageToArray("CATEGORIES");
+        displayCats(CATEGORIES);
+    });
+
+    p.appendChild(select);
+    p.appendChild(btn_edit);
+    p.appendChild(btn_reset);
+    
+    return p;
+}
+
 var createEditZoneForCat = function(cat, zone_to_hide){
+    console.log(zone_to_hide);
     let p = createElement("p");
     let input = createElement("input");
     input.type = "text";
@@ -1030,14 +1167,14 @@ var createEditZoneForCat = function(cat, zone_to_hide){
     btn_edit.className = "btn-add";
     btn_edit.addEventListener('click', function(e){
         edit_category(e, cat);
-        hide_zone(p, zone_to_hide.parentNode.parentNode)
+        hide_zone(p, zone_to_hide)
     });
     let btn_reset = createElement("input");
     btn_reset.type = "button";
     btn_reset.value = "Annuler";
     btn_reset.className = "btn-class";
     btn_reset.addEventListener('click', function(e){
-        hide_zone(p, zone_to_hide.parentNode.parentNode);
+        hide_zone(p, zone_to_hide);
         LocalStorageToArray("CATEGORIES");
         displayCats(CATEGORIES);
     });

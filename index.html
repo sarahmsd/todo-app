@@ -20,12 +20,11 @@
                     <a href="#add-task" id="add-task-plus"><i class="fas fa-plus"></i></a>
                     <i class="fas fa-question"></i>
                     <i class="fas fa-bell"></i>
-                    <a href="#sigout" id="profil"><i class="fa fa-user"></i></a>
+                    <a href="#" id="profil"><i class="fa fa-user"></i></a>
                 </div>                           
             </div>
             <div class="page-content">
                 <div id="sidebar">
-                    <h1 style="text-align: center;"><img src="logo3.png" alt="logo"></h1>
                     <h2 style="text-align: center;">Categories <span><a href="#add-cat-plus" id="add-cat-plus"><i class="fas fa-plus"></i></a></span></h2>
                     <hr class="diviser">
                     <div class="first" id="first">                    
@@ -36,11 +35,11 @@
                     <hr class="diviser">
                     <div class="menu-bloc" id="menu-bloc">
                         <ul>
-                            <li class="li_menu"><a href="#all"><i class="fas fa-tasks"></i>Toutes les tâches</a></li>
-                            <li class="li_menu"><a href="#mines"><i class="fas fa-tasks"></i>Mes tâches</a></li>
-                            <li class="li_menu"><a href="#for_others"><i class="fas fa-tasks"></i>Tâches des autres</a></li>
-                            <li class="li_menu"><a href="#on_going"><i class="fas fa-spinner"></i>En cours</a></li>
-                            <li class="li_menu"><a href="#done"><i class="fas fa-check"></i>Terminée</a></li>
+                            <li class="li_menu"><a id="all" href="#"><i class="fas fa-tasks"></i>Toutes les tâches</a></li>
+                            <li class="li_menu"><a id="mines" href="#"><i class="fas fa-tasks"></i>Mes tâches</a></li>
+                            <li class="li_menu"><a id="for_others" href="#"><i class="fas fa-tasks"></i>Tâches des autres</a></li>
+                            <li class="li_menu"><a id="on_going" href="#"><i class="fas fa-spinner"></i>En cours</a></li>
+                            <li class="li_menu"><a id="done" href="#"><i class="fas fa-check"></i>Terminée</a></li>
                         </ul>
                     </div>
                 </div>
@@ -71,7 +70,6 @@
 
                     <!-----------------------------------------------LISTETASK BLOC-------------------------------------------------------------->
                     <div class="all-task" id="all_tasks">                                     
-                        
                     </div>
                     <!-----------------------------------------------/LISTETASK BLOC-------------------------------------------------------------->
                 </div>
@@ -81,7 +79,7 @@
             <div class="add-task modal" id="add-task-modal">                
                     <h2>Ajouter une tache <span class="close" id="closeModal">X</span></h2>
                     <hr>
-                <form method="POST" action="#">
+                <form method="POST" action="#" id="form_add_task">
                     <div class="form-row" id="row_add_task">
                         <input type="text" class="form-class" placeholder="ex: Reunion de la crd" id="md-task-name" name="task_name">
                         <span id="band"></span>                        
@@ -94,8 +92,8 @@
                         <input type="button" name="add_new" id="add_new" class="btn_new" value="ajouter" hidden = "true">
                     </div>
                     <div>
-                        <input type="button" value="Ajouter une Tâche" name="btn-add-task" class="btn-add" id="md-btn-add-task">
-                        <input type="reset" value="Annuler" name="btn-reset" class="btn-reset" id="md-btn-reset-task">
+                        <button type="submit" name="btn-add-task" class="btn-add" id="md-btn-add-task">Ajouter</button>
+                        <button type="reset" name="btn-reset" class="btn-reset" id="md-btn-reset-task">Annuler</button>
                     </div>
                 </form>
             </div>
@@ -105,7 +103,7 @@
             <div class="add-cat modal" id="add-cat-modal">
                 <h2>Ajouter une catégorie <span class="close" id="closeModalCategory">X</span></h2>
                 <hr>
-                <form method="POST" action="#">
+                <form method="POST" action="#" id="form_add_cat">
                     <div class="form-row-cat">
                         <div class="row">
                             <label for="cat-name">Catégorie</label>
@@ -129,12 +127,13 @@
                         </div>
                     </div>
                     <div>
-                        <input type="button" value="Ajouter" id="md-btn-add-cat" name="btn-add-cat" class="btn-add">
+                        <button type="submit" id="md-btn-add-cat" name="btn-add-cat" class="btn-add">Ajouter</button>
                         <input type="reset" value="Annuler" name="btn-reset-cat" class="btn-reset" id="md-btn-reset_cat">
                     </div>
                 </form>
             </div>
         </div>
+
         <div id="notif" class="notif" style="display: none;">
             <div class="notif-bloc">
                 <span></span>
@@ -228,6 +227,6 @@
                 </div>
             </div>
         </div>
-        <script src="main.js"></script>
+        <script type="module" src="main.js"></script>    
     </body>
 </html>

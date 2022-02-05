@@ -8,7 +8,7 @@ export function createElement(elmt) {
 };
 
 //function to stuff an element
-export function stuffElement(e, content) {    
+export function stuffElement(e, content) { 
     return e.appendChild(document.createTextNode(content));
 };
 

@@ -128,16 +128,17 @@
 
 /*************************************** ADD TASK *************************************************/
 .form-row{
-    border: 1px solid #fafafa;
-    border-radius: 10px;
+    /*border: 1px solid #fafafa;*/
+    /*border-radius: 10px;*/
     padding: 5px;
 }
 
 .form-row .form-class{
     width: 600px;
-    border: none;
+    border: 1px solid #fafafa;
     height: 40px;
     margin-bottom: 5px;
+    border-radius: 10px;
 }
 
 .form-row-cat .form-class{
@@ -250,7 +251,7 @@
 }
 
 .task-modal{
-    width: 900px;
+    width: 700px;
     margin: 21%;
     position: fixed;
     left: 0;
@@ -355,13 +356,14 @@
 /*************************************** CONNEXION/INSCRIPTION *************************************************/
 #inscription, #connexion{
     display: inline-block;
-    margin: 20%;
+    margin-left: 35%;
     margin-top: 5%;
     padding: 2%;
-    width: 700px;
+    width: 350px;
     border-radius: 5px;
-    background-color: #1856b4;   
-    color: #fafafa; 
+    background-color: #ffff;   
+    border: 1px solid white;
+    box-shadow: 3px 3px 10px 2px #a9a1a1;
 }
 
 #inscription.header, #connexion.header{    
@@ -371,13 +373,25 @@
 
 #inscription input, #connexion input{
     border-color: #fafafa;
-    width: 310px;
+    width: 340px;
+    height: 25px;
     border-radius: 5px;
 }
 
 #inscription input.btn, #connexion input.btn{
-    width: 200px;
-    border-radius: 5px;
-    color: black;
+    width: 340px;
+    height: 30px;
+    border-radius: 15px;
+    background-color: #fafafa;
 }
+
+#inscription input.btn.actif, #connexion input.btn.actif{
+    background-color: #1856b4;
+}
+
+.c-ou{
+    display: inline-block;
+    width: 150px;
+}
+
 

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>TODOAPP</title>
         <meta charset="utf-8">
+        <title>TODOAPP</title>        
         <link rel="stylesheet" href="style.css">
         <script src="https://kit.fontawesome.com/9287535619.js" crossorigin="anonymous"></script>
     </head>
@@ -20,12 +20,12 @@
                     <a href="#add-task" id="add-task-plus"><i class="fas fa-plus"></i></a>
                     <i class="fas fa-question"></i>
                     <i class="fas fa-bell"></i>
-                    <a href="#" id="profil"><i class="fa fa-user"></i></a>
+                    <a href="#profil" id="profil"><i class="fa fa-user"></i></a>
                 </div>                           
             </div>
             <div class="page-content">
                 <div id="sidebar">
-                    <h2 style="text-align: center;">Categories <span><a href="#add-cat-plus" id="add-cat-plus"><i class="fas fa-plus"></i></a></span></h2>
+                    <h3 style="text-align: center;">Categories <span><a href="#add-cat-plus" id="add-cat-plus"><i class="fas fa-plus"></i></a></span></h3>
                     <hr class="diviser">
                     <div class="first" id="first">                    
                         <ul id="list-cat">
@@ -46,7 +46,7 @@
                 <div id="main-content"> 
                     <!-----------------------------------------------ADDTASK BLOC-------------------------------------------------------------->               
                     <div class="add-task" id="add-task" style="display: none;">
-                        <h2>Boite de reception</h2>
+                        <h3>Boite de reception</h3>
                         <hr>
                         <form method="POST" action="">
                             <div class="form-row">
@@ -77,7 +77,7 @@
         </div>
         <div class="task-modal" id="task-modal" style="display: none;">
             <div class="add-task modal" id="add-task-modal">                
-                    <h2>Ajouter une tache <span class="close" id="closeModal">X</span></h2>
+                    <h3>Ajouter une tache <span class="close" id="closeModal">x</span></h3>
                     <hr>
                 <form method="POST" action="#" id="form_add_task">
                     <div class="form-row" id="row_add_task">
@@ -101,7 +101,7 @@
 
         <div class="category-modal" id="category-modal" style="display: none;">
             <div class="add-cat modal" id="add-cat-modal">
-                <h2>Ajouter une catégorie <span class="close" id="closeModalCategory">X</span></h2>
+                <h3>Ajouter une catégorie <span class="close" id="closeModalCategory">X</span></h3>
                 <hr>
                 <form method="POST" action="#" id="form_add_cat">
                     <div class="form-row-cat">
@@ -143,7 +143,7 @@
 
         <div id="inscription" style="display: none;">
             <div class="header">
-                Inscription
+                <h2>S'inscrire</h2>
                 <hr>
             </div>
             <div class="body_user">
@@ -160,10 +160,12 @@
                         <label for="password" class="form-label">Mot de passe</label>
                         <input type="password" class="form-class" id="password">
                     </div>
-
                     <div>
-                        <input type="button" name="signin" id="signin" value="valider" class="btn">
-                        <input type="button" name="connect" id="connect" value="J'ai déjà un compte!" class="btn">
+                        <input type="button" name="signin" id="signin" value="S'inscrire" class="btn actif">
+                    </div>
+                    <br><hr class="c-ou"> ou <hr class="c-ou"><br>
+                    <div>
+                        <input type="button" name="connect" id="connect" value="S'identifier" class="btn">
                     </div>
                 </form>
             </div>
@@ -171,7 +173,7 @@
 
         <div id="connexion">
             <div class="header">
-                Connexion
+                <h2>S'identifier</h2>
                 <hr>
             </div>
             <div class="body_user">
@@ -184,10 +186,13 @@
                         <label for="password" class="form-label">Mot de passe</label>
                         <input type="password" class="form-class" id="pass">
                     </div>
-
+                    <br>
                     <div>
-                        <input type="button" name="login" id="btn-login" value="valider" class="btn">
-                        <input type="button" name="signin" value="Pas de compte? Je m'inscris" id="btn-sign" class="btn">
+                        <input type="button" name="login" id="btn-login" value="S'dentifier" class="btn actif">                        
+                    </div><br>                    
+                        <hr class="c-ou"> ou <hr class="c-ou"><br>
+                    <div>
+                        <input type="button" name="signin" value="S'inscrire" id="btn-sign" class="btn">
                     </div>
                 </form>
             </div>
@@ -207,7 +212,7 @@
 
         <div class="edit-pass-modal" id="edit-pass-modal" style="display: none;">
             <div id="">
-                <h2>Modification du mot de passe
+                <h4>Modification du mot de passe
                 <hr>
                 <div class="row">
                     <label for="old-pass" class="form-label">Ancien mot de passe</label>

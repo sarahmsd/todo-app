@@ -1,6 +1,6 @@
-import { modal_profil, main_div, inscription_div, connexion_div } from "./main";
+import { main_div} from "./main";
 import { LocalStorageToArray, setStorageContentUser, setStorageUserConnected, USERS, USER } from "./storage_module";
-import { notify_user, closeModal } from "./commons";
+import { notify_user, closeModal, createModal } from "./commons";
 
 export let modal_profil = document.getElementById("profil_modal");
 
@@ -10,7 +10,6 @@ export let email = document.getElementById('email');
 export let pass = document.getElementById('password');
 export let connexion_div = document.getElementById("connexion");
 export let inscription_div = document.getElementById("inscription");
-export let sidebar_cats = document.getElementById("list-cat");
 
 
 //function sign_in
@@ -128,7 +127,7 @@ btn_login.addEventListener('click', function () {
         main_div.setAttribute("style", "display: null;");
         connexion_div.setAttribute("style", "display: none;");
         inscription_div.setAttribute("style", "display: none;");  
-        notify_user("Ravi de vous revoir!", "success");
+        notify_user('Ravi de vous revoir! ${USER.username}', "success");
     }
 });
 
@@ -137,7 +136,6 @@ let btn_profil = document.getElementById('profil');
 
 //Au clic on verifie si la modal était ouvert on la ferme et inversement
 btn_profil.addEventListener('click', function () { 
-    console.log("je suis là");   
     if(modal_profil.style.display === "none"){        
         createModal(modal_profil);  
     }else {
@@ -153,6 +151,12 @@ document.getElementById("btn-sign").addEventListener("click", function () {
     main_div.setAttribute("style", "display: none;");
     connexion_div.setAttribute("style", "display: none;");
     inscription_div.setAttribute("style", "display: null;"); 
+});
+
+document.getElementById("connect").addEventListener("click", function () {
+    main_div.setAttribute("style", "display: none;");
+    connexion_div.setAttribute("style", "display: null;");
+    inscription_div.setAttribute("style", "display: none;"); 
 });
 
 

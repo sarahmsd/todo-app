@@ -1,6 +1,6 @@
 import { displayCats, getSelectedCat, addCategory, createCategory } from "./category_module";
 import { LocalStorageToArray, setLocalStorageContent, setStorageContentCat, setStorageContentTask, USER, CATEGORIES, TABLEAU, TASKS } from "./storage_module";
-import { createModal, closeModal, notify_user, stuffElement, createElement, stuffCatsInSelect, getCatByUser, hide_zone, hideInput } from "./commons";
+import { createModal, closeModal, notify_user, stuffElement, createElement, stuffCatsInSelect, getCatByUser, hide_zone, hideInput, displayInput } from "./commons";
 
 export let btn_open_main_modal = document.getElementById("add-task-plus");
 export let btn_close_main_modal = document.getElementById('closeModal');
@@ -16,19 +16,21 @@ export function listTasksByMenu(menu){
     //Stuff the ARRAYS WHITH STORAGE CONTENT
     LocalStorageToArray("TABLEAU");
     LocalStorageToArray("USER");
-    //declaration d'un tableau ou on mettra la category trouver pour respecter la structure
-    let tab = [];
     //SEARCH THE CATEGORY
+    if(Object.keys(TABLEAU).length === 0){c=true; notify_user("Penser à ajouter des tâches", "warning");}
     TABLEAU.forEach((item) =>{
         if(item.user.username === USER.username){ 
             if(menu === "all"){
                 displayTaks(item.categories);
                 c = true;
             }else if(menu === "mines"){
+                displayMines();
                 c = true;
             }else if(menu === "for_others"){
+                displayOthers();
                 c = true;
             }else if(menu === "on_going"){
+                displayOnGoing();
                 c = true;
             }else if(menu === "done"){
                 displayDoneTasks(item.categories);
@@ -42,10 +44,34 @@ export function listTasksByMenu(menu){
     }
 }
 
+function displayMines(){
+    let h2;
+    bloc_task.innerHTML = "";
+    h2 = createElement("h3");
+    stuffElement(h2, "Mes tâches (Bientôt...)");
+    bloc_task.appendChild(h2);
+}
+
+function displayOthers(){
+    let h2;
+    bloc_task.innerHTML = "";
+    h2 = createElement("h3");
+    stuffElement(h2, "Tâches des autres (Bientôt...)");
+    bloc_task.appendChild(h2);
+}
+
+function displayOnGoing(){
+    let h2;
+    bloc_task.innerHTML = "";
+    h2 = createElement("h3");
+    stuffElement(h2, "Tâches en cours (Bientôt...)");
+    bloc_task.appendChild(h2);
+}
+
 function displayDoneTasks(cats, cat_name="done") {
     let h2, br, div, hr, p1, input, span, p2, i1, i2, i3;
     bloc_task.innerHTML = "";
-    h2 = createElement("h2");
+    h2 = createElement("h3");
     if(cat_name === "done") stuffElement(h2, "Tâches terminées");
     br = createElement("br");
     bloc_task.appendChild(h2);
@@ -489,7 +515,7 @@ function delete_task (e){
 export function displayTaks(cats, cat_name = ""){
     let h2, br, div, hr, p1, input, span, p2, i1, i2, i3;
     bloc_task.innerHTML = "";
-    h2 = createElement("h2");
+    h2 = createElement("h3");
     if(cat_name === "") stuffElement(h2, "Toutes les tâches");
     else stuffElement(h2, "Liste des Tâches de la catégorie "+cat_name);   
     br = createElement("br");

@@ -2,10 +2,10 @@ import { LocalStorageToArray, USER } from "./storage_module";
 import { getCatByUser, stuffCatsInSelect, stuffElement } from "./commons";
 import { displayCats } from "./category_module";
 import { task_category, displayTaks } from "./task_module";
+import { inscription_div, connexion_div } from "./user_module";
 
 export let body = document.body;
 export let main_div = document.getElementById('main_div');
-
 
 //Function principal
 (function () {
@@ -19,6 +19,7 @@ export let main_div = document.getElementById('main_div');
         displayCats(getCatByUser(user_signed));
         displayTaks(getCatByUser(user_signed));
         stuffCatsInSelect(getCatByUser(user_signed), task_category);
+        document.getElementById('signed_user').innerHTML='';
         stuffElement(document.getElementById('signed_user'), user_signed.username);
     }    
 })();

@@ -1,7 +1,9 @@
 import { LocalStorageToArray, setLocalStorageContent, setStorageContentCat, CATEGORIES, TABLEAU, USER } from "./storage_module";
 import { createModal, closeModal, notify_user, createElement, hide_zone, stuffElement, getCatByUser } from "./commons";
 import { displayTaks, showEditZone, listTaskByCat, listTasksByMenu } from "./task_module";
-import { sidebar_cats } from "./main";
+
+export let sidebar_cats = document.getElementById("list-cat");
+
 //SET THE CATEGORIES IN THE MAIN ARRAY
 function setMainArray(categories) {
     var tableau = {};

@@ -1,8 +1,8 @@
-import { LocalStorageToArray, USER } from "./storage_module";
+import { LocalStorageToArray, USER } from "./storagemodule";
 import { getCatByUser, stuffCatsInSelect, stuffElement } from "./commons";
-import { displayCats } from "./category_module";
-import { task_category, displayTaks } from "./task_module";
-import { inscription_div, connexion_div } from "./user_module";
+import { displayCats } from "./categorymodule";
+import { task_category, displayTaks } from "./taskmodule";
+import { inscription_div, connexion_div } from "./usermodule";
 
 export let body = document.body;
 export let main_div = document.getElementById('main_div');

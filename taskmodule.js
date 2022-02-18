@@ -1,5 +1,5 @@
-import { displayCats, getSelectedCat, addCategory, createCategory } from "./category_module";
-import { LocalStorageToArray, setLocalStorageContent, setStorageContentCat, setStorageContentTask, USER, CATEGORIES, TABLEAU, TASKS } from "./storage_module";
+import { displayCats, getSelectedCat, addCategory, createCategory } from "./categorymodule";
+import { LocalStorageToArray, setLocalStorageContent, setStorageContentCat, setStorageContentTask, USER, CATEGORIES, TABLEAU, TASKS } from "./storagemodule";
 import { createModal, closeModal, notify_user, stuffElement, createElement, stuffCatsInSelect, getCatByUser, hide_zone, hideInput, displayInput } from "./commons";
 
 export let btn_open_main_modal = document.getElementById("add-task-plus");

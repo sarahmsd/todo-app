@@ -1,7 +1,7 @@
-import { CATEGORIES, LocalStorageToArray } from "./storage_module";
-import { TABLEAU } from "./storage_module";
+import { CATEGORIES, LocalStorageToArray } from "./storagemodule";
+import { TABLEAU } from "./storagemodule";
 import { body } from "./main";
-import { displayTaks } from "./task_module";
+import { displayTaks } from "./taskmodule";
 //function to create an HTMLElement
 export function createElement(elmt) {    
     return document.createElement(elmt);;

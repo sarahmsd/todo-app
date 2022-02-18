@@ -1,5 +1,5 @@
 import { main_div} from "./main";
-import { LocalStorageToArray, setStorageContentUser, setStorageUserConnected, USERS, USER } from "./storage_module";
+import { LocalStorageToArray, setStorageContentUser, setStorageUserConnected, USERS, USER } from "./storagemodule";
 import { notify_user, closeModal, createModal } from "./commons";
 
 export let modal_profil = document.getElementById("profil_modal");

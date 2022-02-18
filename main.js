@@ -1,4 +1,4 @@
-import { LocalStorageToArray, USER } from "./storagemodule";
+import { LocalStorageToArray, USER } from "storagemodule";
 import { getCatByUser, stuffCatsInSelect, stuffElement } from "./commons";
 import { displayCats } from "./categorymodule";
 import { task_category, displayTaks } from "./taskmodule";

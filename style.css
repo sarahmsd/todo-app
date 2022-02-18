@@ -2,7 +2,7 @@
 #navbar{
     display: inline-block;
     width: 100%;
-    background-color: #1856b4;
+    background-color: #4158D0;
     padding-top: 2%;  
     padding-bottom: 2%; 
 }
@@ -159,7 +159,7 @@
 
 .banderolle{
     display: inline-block;
-    background-color: #1856b4;   
+    background-color: #4158D0;   
     height: 20px;
     padding: 5px;
     border-radius: 5px;
@@ -174,7 +174,7 @@
 }
 
 .btn-add{
-    background-color: #1856b4;
+    background-color: #4158D0;
     color: #fafafa;        
 }
 
@@ -189,7 +189,7 @@
 }
 
 .new:hover, .new:focus{
-    color: #1856b4;
+    color: #4158D0;
     text-decoration: none;
     cursor: pointer;
 }
@@ -265,7 +265,7 @@
 }
 
 .close{
-    color: #1856b4;
+    color: #4158D0;
     float: right;
     font-size: 20px;
     margin-top: 10px;
@@ -286,7 +286,7 @@
     left: 0%;
     top: 0%;
     padding: 1%;
-    background-color: #1856b4; 
+    background-color: #4158D0; 
     border-radius: 5px;
 }
 
@@ -368,7 +368,7 @@
 
 #inscription.header, #connexion.header{    
     background-color: #fafafa;   
-    color: #1856b4; 
+    color: #4158D0; 
 }
 
 #inscription input, #connexion input{
@@ -386,7 +386,7 @@
 }
 
 #inscription input.btn.actif, #connexion input.btn.actif{
-    background-color: #1856b4;
+    background-color: #4158D0;
 }
 
 .c-ou{

@@ -1,6 +1,6 @@
-import { LocalStorageToArray, setLocalStorageContent, setStorageContentCat, CATEGORIES, TABLEAU, USER } from "./storagemodule";
-import { createModal, closeModal, notify_user, createElement, hide_zone, stuffElement, getCatByUser } from "./commons";
-import { displayTaks, showEditZone, listTaskByCat, listTasksByMenu } from "./taskmodule";
+import { LocalStorageToArray, setLocalStorageContent, setStorageContentCat, CATEGORIES, TABLEAU, USER } from "./storagemodule.js";
+import { createModal, closeModal, notify_user, createElement, hide_zone, stuffElement, getCatByUser } from "./commons.js";
+import { displayTaks, showEditZone, listTaskByCat, listTasksByMenu } from "./taskmodule.js";
 
 export let sidebar_cats = document.getElementById("list-cat");
 

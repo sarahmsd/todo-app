@@ -1,7 +1,7 @@
-import { CATEGORIES, LocalStorageToArray } from "./storagemodule";
-import { TABLEAU } from "./storagemodule";
-import { body } from "./main";
-import { displayTaks } from "./taskmodule";
+import { CATEGORIES, LocalStorageToArray } from "./storagemodule.js";
+import { TABLEAU } from "./storagemodule.js";
+import { body } from "./main.js";
+import { displayTaks } from "./taskmodule.js";
 //function to create an HTMLElement
 export function createElement(elmt) {    
     return document.createElement(elmt);;
@@ -68,6 +68,7 @@ export function getCatByUser(user) {
             cats = item.categories;
         }
     });
+    console.log(cats);
     return cats;
 };
 

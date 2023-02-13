@@ -1,10 +1,16 @@
+body{
+    font-family: "Poppins";
+    margin: 0;
+    padding: 0;
+}
+
 /*************************************** NAVBAR *************************************************/
 #navbar{
     display: inline-block;
     width: 100%;
     background-color: #4158D0;
-    padding-top: 2%;  
-    padding-bottom: 2%; 
+    padding: 2% 0; 
+    position: fixed;
 }
 
 #nav-right{
@@ -25,12 +31,12 @@
 }
 
 .fas.fa-bars{
-    margin-left: 15px;;
+    margin-left: 15px;
     padding-right: 8px;
 }
 
 .fas.fa-bell, .fas.fa-plus, .fas.fa-question, .fa.fa-sign-out{
-    margin-left: 15px;;
+    margin-left: 15px;
     padding-right: 8px;
 }
 
@@ -64,11 +70,11 @@
     float: left;
     width: 22%;
     background-color: #fafafa;
-    margin-top: -4px;
     z-index: -100;
     height: 700px;
     position: fixed;
     overflow: auto;
+    top: 10%;
 }
 
 #sidebar div ul li{
@@ -115,7 +121,7 @@
 
 /*************************************** main-content *************************************************/
 #page-content{
-    display: inline-block;
+    display: inline-block;    
 }
 
 #main-content{
@@ -123,6 +129,9 @@
     float: right;
     padding-left: 7%;
     padding-right: 7%;
+    margin: auto;
+    margin-top: 7%;
+    position: relative;
 }
 /*************************************** /main-content *************************************************/
 
@@ -130,12 +139,12 @@
 .form-row{
     /*border: 1px solid #fafafa;*/
     /*border-radius: 10px;*/
-    padding: 5px;
+    padding: 10px;
 }
 
 .form-row .form-class{
     width: 600px;
-    border: 1px solid #fafafa;
+    border: 1px solid #f4f4f4;
     height: 40px;
     margin-bottom: 5px;
     border-radius: 10px;

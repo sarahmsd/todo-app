@@ -1,6 +1,6 @@
-import { displayCats, getSelectedCat, addCategory, createCategory } from "./categorymodule";
-import { LocalStorageToArray, setLocalStorageContent, setStorageContentCat, setStorageContentTask, USER, CATEGORIES, TABLEAU, TASKS } from "./storagemodule";
-import { createModal, closeModal, notify_user, stuffElement, createElement, stuffCatsInSelect, getCatByUser, hide_zone, hideInput, displayInput } from "./commons";
+import { displayCats, getSelectedCat, addCategory, createCategory } from "./categorymodule.js";
+import { LocalStorageToArray, setLocalStorageContent, setStorageContentCat, setStorageContentTask, USER, CATEGORIES, TABLEAU, TASKS } from "./storagemodule.js";
+import { createModal, closeModal, notify_user, stuffElement, createElement, stuffCatsInSelect, getCatByUser, hide_zone, hideInput, displayInput } from "./commons.js";
 
 export let btn_open_main_modal = document.getElementById("add-task-plus");
 export let btn_close_main_modal = document.getElementById('closeModal');
@@ -531,7 +531,7 @@ export function displayTaks(cats, cat_name = ""){
 }
 
 //FUNCTION TO LIST TASKS BY CAT
-export function listTaskByCat(e){        
+export function listTaskByCat(e){
     let cat_name = e.target.firstElementChild.nextSibling.textContent;    
     let c = false;  
     //Stuff the ARRAYS WHITH STORAGE CONTENT
@@ -560,7 +560,6 @@ export function listTaskByCat(e){
 };
 
 ///MANAGE TASKS
-
 btn_open_main_modal.addEventListener("click", function() {
     createModal(main_modal);
     LocalStorageToArray("CATEGORIES");
@@ -578,7 +577,6 @@ form_add_task.addEventListener("reset", function() {
     task_category.value = "";
 }, false);
 
-
 form_add_task.addEventListener('submit', function (e) {   
     e.stopPropagation();
     e.preventDefault();
@@ -586,12 +584,11 @@ form_add_task.addEventListener('submit', function (e) {
     closeModal(main_modal);  
 });
 
-
-
 let newCat = document.getElementById("new");
 newCat.addEventListener("click", function () {
    displayInput(); 
 });
+
 let btn_new = document.getElementById("add_new");
 btn_new.addEventListener('click', function () {
     let input = document.getElementById('new_cat');

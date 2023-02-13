@@ -1,6 +1,6 @@
-import { main_div} from "./main";
-import { LocalStorageToArray, setStorageContentUser, setStorageUserConnected, USERS, USER } from "./storagemodule";
-import { notify_user, closeModal, createModal } from "./commons";
+import { main_div} from "./main.js";
+import { LocalStorageToArray, setStorageContentUser, setStorageUserConnected, USERS, USER } from "./storagemodule.js";
+import { notify_user, closeModal, createModal } from "./commons.js";
 
 export let modal_profil = document.getElementById("profil_modal");
 
@@ -13,8 +13,8 @@ export let inscription_div = document.getElementById("inscription");
 
 
 //function sign_in
-function signin(username, email, pass) {
-    var user = {}, login="", mail = "";
+function signin (username, email, pass) {
+    let user = {}, login="", mail = "";
     let user_exist = false;
     if(username !== undefined && email !== undefined && pass !== undefined){
         LocalStorageToArray("USERS");
@@ -26,10 +26,12 @@ function signin(username, email, pass) {
                 user = false;                  
             }
         });
+
         if(user_exist === false){
             user.username = username;
             user.email = email;
             user.pass = pass;
+            setStorageUserConnected(user);
         }
         return user;
     }else{
@@ -78,7 +80,6 @@ function login(username, pass) {
 
 //Fontion logout (consiste à liberer le localstorage contenant les infos du user qui était connecté)
 function logout() {
-    console.log("c'est moi, la fonction logout");
     if(confirm("Voulez-vous vous déconnecter?")) {
         setStorageUserConnected(null);
         closeModal(modal_profil);
@@ -116,6 +117,13 @@ function edit_password(user){
 let btn_signin = document.getElementById('signin');
 btn_signin.addEventListener('click', function () {
     addUser(signin(username.value, email.value, pass.value));
+    let user = login(username.value, pass.value);
+    if(user !== null){
+        main_div.setAttribute("style", "display: null;");
+        connexion_div.setAttribute("style", "display: none;");
+        inscription_div.setAttribute("style", "display: none;");  
+        notify_user('Ravi de vous revoir! ' + USER.username, "success");
+    }
 }, false);
 
 let btn_login = document.getElementById("btn-login");
@@ -150,7 +158,7 @@ btn_logout.addEventListener("click", function () {
 document.getElementById("btn-sign").addEventListener("click", function () {
     main_div.setAttribute("style", "display: none;");
     connexion_div.setAttribute("style", "display: none;");
-    inscription_div.setAttribute("style", "display: null;"); 
+    inscription_div.removeAttribute("style"); 
 });
 
 document.getElementById("connect").addEventListener("click", function () {

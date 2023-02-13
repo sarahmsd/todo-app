@@ -1,237 +1,237 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>TODOAPP</title>        
-        <link rel="stylesheet" href="style.css">
-        <script src="https://kit.fontawesome.com/9287535619.js" crossorigin="anonymous"></script>
-    </head>
-    <body>
-        <div id="main_div" style="display: none;">        
-            <div id="navbar">
-                <div id="nav-left">
-                    <i class="fas fa-bars"></i>  
-                    <i class="fas fa-home"></i>                          
-                </div>                     
-                <div id="nav-center">
-                    <input id="search" type="search" placeholder=""/>
-                </div> 
-                <div id="nav-right">
-                    <a href="#add-task" id="add-task-plus"><i class="fas fa-plus"></i></a>
-                    <i class="fas fa-question"></i>
-                    <i class="fas fa-bell"></i>
-                    <a href="#profil" id="profil"><i class="fa fa-user"></i></a>
-                </div>                           
-            </div>
-            <div class="page-content">
-                <div id="sidebar">
-                    <h3 style="text-align: center;">Categories <span><a href="#add-cat-plus" id="add-cat-plus"><i class="fas fa-plus"></i></a></span></h3>
-                    <hr class="diviser">
-                    <div class="first" id="first">                    
-                        <ul id="list-cat">
-                            
-                        </ul>
-                    </div>
-                    <hr class="diviser">
-                    <div class="menu-bloc" id="menu-bloc">
-                        <ul>
-                            <li class="li_menu"><a id="all" href="#"><i class="fas fa-tasks"></i>Toutes les tâches</a></li>
-                            <li class="li_menu"><a id="mines" href="#"><i class="fas fa-tasks"></i>Mes tâches</a></li>
-                            <li class="li_menu"><a id="for_others" href="#"><i class="fas fa-tasks"></i>Tâches des autres</a></li>
-                            <li class="li_menu"><a id="on_going" href="#"><i class="fas fa-spinner"></i>En cours</a></li>
-                            <li class="li_menu"><a id="done" href="#"><i class="fas fa-check"></i>Terminée</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div id="main-content"> 
-                    <!-----------------------------------------------ADDTASK BLOC-------------------------------------------------------------->               
-                    <div class="add-task" id="add-task" style="display: none;">
-                        <h3>Boite de reception</h3>
-                        <hr>
-                        <form method="POST" action="">
-                            <div class="form-row">
-                                <input type="text" class="form-class" placeholder="ex: Reunio, de la crd" id="task-name" name="task_name">
-                                <span class="banderolle">Categorie 1</span><span class="banderolle">Sous_Categorie 1</span>
-                                <br>
-                                <textarea name="task_description" class="form-class" id="task-description" cols="30" rows="10" placeholder="Description..."></textarea><br>
-                                <select name="task_categorie" id="task-category" class="form-class">
-                                    <option value="1">Categorie 1</option>
-                                    <option value="2">Categorie 2</option>
-                                    <option value="3">Categorie 3</option>
-                                </select><br>
-                            </div>
-                            <div>
-                                <input type="submit" value="Ajouter une Tâche" name="btn-add-task" class="btn-add">
-                                <input type="reset" value="Annuler" name="btn-reset" class="btn-reset">
-                            </div>
-                        </form>
-                    </div>  
-                    <!-----------------------------------------------/ADDTASK BLOC-------------------------------------------------------------->
-
-                    <!-----------------------------------------------LISTETASK BLOC-------------------------------------------------------------->
-                    <div class="all-task" id="all_tasks">                                     
-                    </div>
-                    <!-----------------------------------------------/LISTETASK BLOC-------------------------------------------------------------->
-                </div>
-            </div>        
+<head>
+    <meta charset="utf-8">
+    <title>TODOAPP</title>        
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/9287535619.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="main_div" style="display: none;">        
+        <div id="navbar">
+            <div id="nav-left">
+                <i class="fas fa-bars"></i>  
+                <i class="fas fa-home"></i>                          
+            </div>                     
+            <div id="nav-center">
+                <input id="search" type="search" placeholder=""/>
+            </div> 
+            <div id="nav-right">
+                <a href="#add-task" id="add-task-plus"><i class="fas fa-plus"></i></a>
+                <i class="fas fa-question"></i>
+                <i class="fas fa-bell"></i>
+                <a href="#profil" id="profil"><i class="fa fa-user"></i></a>
+            </div>                           
         </div>
-        <div class="task-modal" id="task-modal" style="display: none;">
-            <div class="add-task modal" id="add-task-modal">                
-                    <h3>Ajouter une tache <span class="close" id="closeModal">x</span></h3>
+        <div class="page-content">
+            <div id="sidebar">
+                <h3 style="text-align: center;">Categories <span><a href="#add-cat-plus" id="add-cat-plus"><i class="fas fa-plus"></i></a></span></h3>
+                <hr class="diviser">
+                <div class="first" id="first">                    
+                    <ul id="list-cat">
+                        
+                    </ul>
+                </div>
+                <hr class="diviser">
+                <div class="menu-bloc" id="menu-bloc">
+                    <ul>
+                        <li class="li_menu"><a id="all" href="#"><i class="fas fa-tasks"></i>Toutes les tâches</a></li>
+                        <li class="li_menu"><a id="mines" href="#"><i class="fas fa-tasks"></i>Mes tâches</a></li>
+                        <li class="li_menu"><a id="for_others" href="#"><i class="fas fa-tasks"></i>Tâches des autres</a></li>
+                        <li class="li_menu"><a id="on_going" href="#"><i class="fas fa-spinner"></i>En cours</a></li>
+                        <li class="li_menu"><a id="done" href="#"><i class="fas fa-check"></i>Terminée</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="main-content"> 
+                <!-----------------------------------------------ADDTASK BLOC-------------------------------------------------------------->               
+                <div class="add-task" id="add-task" style="display: none;">
+                    <h3>Boite de reception</h3>
                     <hr>
-                <form method="POST" action="#" id="form_add_task">
-                    <div class="form-row" id="row_add_task">
-                        <input type="text" class="form-class" placeholder="ex: Reunion de la crd" id="md-task-name" name="task_name">
-                        <span id="band"></span>                        
-                        <br>
-                        <textarea name="task_description" class="form-class" id="md-task-description" cols="30" rows="10" placeholder="Description..."></textarea><br>
-                        <select name="task_categorie" id="md-task-category" class="form-class">
-                            
-                        </select> <i class="fa fa-plus new" id="new"></i><br>
-                        <input type="text" name="new_cat" id="new_cat" class="form-class" hidden="true">
-                        <input type="button" name="add_new" id="add_new" class="btn_new" value="ajouter" hidden = "true">
-                    </div>
-                    <div>
-                        <button type="submit" name="btn-add-task" class="btn-add" id="md-btn-add-task">Ajouter</button>
-                        <button type="reset" name="btn-reset" class="btn-reset" id="md-btn-reset-task">Annuler</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <div class="category-modal" id="category-modal" style="display: none;">
-            <div class="add-cat modal" id="add-cat-modal">
-                <h3>Ajouter une catégorie <span class="close" id="closeModalCategory">X</span></h3>
-                <hr>
-                <form method="POST" action="#" id="form_add_cat">
-                    <div class="form-row-cat">
-                        <div class="row">
-                            <label for="cat-name">Catégorie</label>
-                            <input type="text" class="form-class" placeholder="ex: Travail" id="cat-name" name="cat-name">
+                    <form method="POST" action="">
+                        <div class="form-row">
+                            <input type="text" class="form-class" placeholder="ex: Reunio, de la crd" id="task-name" name="task_name">
+                            <span class="banderolle">Categorie 1</span><span class="banderolle">Sous_Categorie 1</span>
+                            <br>
+                            <textarea name="task_description" class="form-class" id="task-description" cols="30" rows="10" placeholder="Description..."></textarea><br>
+                            <select name="task_categorie" id="task-category" class="form-class">
+                                <option value="1">Categorie 1</option>
+                                <option value="2">Categorie 2</option>
+                                <option value="3">Categorie 3</option>
+                            </select><br>
                         </div>
-                        <br>
-                        <div class="row">
-                            <label for="cat-color">Couleur</label>
-                            <select name="cat-color" id="cat-color" class="form-class">
-                                <option value="blue">BLEU</option>
-                                <option value="green">VERT</option>
-                            </select>
+                        <div>
+                            <input type="submit" value="Ajouter une Tâche" name="btn-add-task" class="btn-add">
+                            <input type="reset" value="Annuler" name="btn-reset" class="btn-reset">
                         </div>
-                        <br>
-                        <div class="row">
-                            <label for="cat-icone">Icone</label>
-                            <select name="cat-icone" id="cat-icone" class="form-class">
-                                <option value="box">BLEU</option>
-                                <option value="users">VERT</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div>
-                        <button type="submit" id="md-btn-add-cat" name="btn-add-cat" class="btn-add">Ajouter</button>
-                        <input type="reset" value="Annuler" name="btn-reset-cat" class="btn-reset" id="md-btn-reset_cat">
-                    </div>
-                </form>
-            </div>
-        </div>
+                    </form>
+                </div>  
+                <!-----------------------------------------------/ADDTASK BLOC-------------------------------------------------------------->
 
-        <div id="notif" class="notif" style="display: none;">
-            <div class="notif-bloc">
-                <span></span>
-                <span class="close-notif" id="close-notif">x</span>
+                <!-----------------------------------------------LISTETASK BLOC-------------------------------------------------------------->
+                <div class="all-task" id="all_tasks">                                     
+                </div>
+                <!-----------------------------------------------/LISTETASK BLOC-------------------------------------------------------------->
             </div>
-        </div>
-
-        <div id="inscription" style="display: none;">
-            <div class="header">
-                <h2>S'inscrire</h2>
+        </div>        
+    </div>
+    <div class="task-modal" id="task-modal" style="display: none;">
+        <div class="add-task modal" id="add-task-modal">                
+                <h3>Ajouter une tache <span class="close" id="closeModal">x</span></h3>
                 <hr>
-            </div>
-            <div class="body_user">
-                <form action="#" method="post">
-                    <div class="row">
-                        <label for="username" class="form-label">Nom d'utilisateur</label>
-                        <input type="text" name="username" id="username" class="form-class" placeholder="ex: Diallo Saratou">
-                    </div>
-                    <div class="row">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" name="email" id="email" placeholder="ex: email@gmail.com">
-                    </div>
-                    <div class="row">
-                        <label for="password" class="form-label">Mot de passe</label>
-                        <input type="password" class="form-class" id="password">
-                    </div>
-                    <div>
-                        <input type="button" name="signin" id="signin" value="S'inscrire" class="btn actif">
-                    </div>
-                    <br><hr class="c-ou"> ou <hr class="c-ou"><br>
-                    <div>
-                        <input type="button" name="connect" id="connect" value="S'identifier" class="btn">
-                    </div>
-                </form>
-            </div>
+            <form method="POST" action="#" id="form_add_task">
+                <div class="form-row" id="row_add_task">
+                    <input type="text" class="form-class" placeholder="ex: Reunion de la crd" id="md-task-name" name="task_name">
+                    <span id="band"></span>                        
+                    <br>
+                    <textarea name="task_description" class="form-class" id="md-task-description" cols="30" rows="10" placeholder="Description..."></textarea><br>
+                    <select name="task_categorie" id="md-task-category" class="form-class">
+                    </select> 
+                    <i class="fa fa-plus new" id="new"></i><br>
+                    <input type="text" name="new_cat" id="new_cat" class="form-class" hidden="true">
+                    <input type="button" name="add_new" id="add_new" class="btn_new" value="ajouter" hidden = "true">
+                </div>
+                <div>
+                    <button type="submit" name="btn-add-task" class="btn-add" id="md-btn-add-task">Ajouter</button>
+                    <button type="reset" name="btn-reset" class="btn-reset" id="md-btn-reset-task">Annuler</button>
+                </div>
+            </form>
         </div>
+    </div>
 
-        <div id="connexion">
-            <div class="header">
-                <h2>S'identifier</h2>
-                <hr>
-            </div>
-            <div class="body_user">
-                <form action="#" method="post">
+    <div class="category-modal" id="category-modal" style="display: none;">
+        <div class="add-cat modal" id="add-cat-modal">
+            <h3>Ajouter une catégorie <span class="close" id="closeModalCategory">X</span></h3>
+            <hr>
+            <form method="POST" action="#" id="form_add_cat">
+                <div class="form-row-cat">
                     <div class="row">
-                        <label for="username" class="form-label">Nom d'utilisateur</label>
-                        <input type="text" name="username" id="login" class="form-class" placeholder="ex: diallo">
-                    </div>                    
-                    <div class="row">
-                        <label for="password" class="form-label">Mot de passe</label>
-                        <input type="password" class="form-class" id="pass">
+                        <label for="cat-name">Catégorie</label>
+                        <input type="text" class="form-class" placeholder="ex: Travail" id="cat-name" name="cat-name">
                     </div>
                     <br>
-                    <div>
-                        <input type="button" name="login" id="btn-login" value="S'dentifier" class="btn actif">                        
-                    </div><br>                    
-                        <hr class="c-ou"> ou <hr class="c-ou"><br>
-                    <div>
-                        <input type="button" name="signin" value="S'inscrire" id="btn-sign" class="btn">
+                    <div class="row">
+                        <label for="cat-color">Couleur</label>
+                        <select name="cat-color" id="cat-color" class="form-class">
+                            <option value="blue">BLEU</option>
+                            <option value="green">VERT</option>
+                        </select>
                     </div>
-                </form>
-            </div>
+                    <br>
+                    <div class="row">
+                        <label for="cat-icone">Icone</label>
+                        <select name="cat-icone" id="cat-icone" class="form-class">
+                            <option value="box">BLEU</option>
+                            <option value="users">VERT</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <button type="submit" id="md-btn-add-cat" name="btn-add-cat" class="btn-add">Ajouter</button>
+                    <input type="reset" value="Annuler" name="btn-reset-cat" class="btn-reset" id="md-btn-reset_cat">
+                </div>
+            </form>
         </div>
+    </div>
 
-        <div class="logout-modal" id="profil_modal" style="display: none;">
-            <div>
-                <h2>Profil
-                <hr>
-                <h4 id="signed_user"></h4>
-                <div class="row">
-                    <input type="button" name="edit_pass" id="edit_pass" class="btn-class" value="Editer Mot de Passe">
-                    <input type="button" name="signout" id="logout" class="btn-class" value="Se déconnecter">
-                </div>
-            </div>
+    <div id="notif" class="notif" style="display: none;">
+        <div class="notif-bloc">
+            <span></span>
+            <span class="close-notif" id="close-notif">x</span>
         </div>
+    </div>
 
-        <div class="edit-pass-modal" id="edit-pass-modal" style="display: none;">
-            <div id="">
-                <h4>Modification du mot de passe
-                <hr>
+    <div id="inscription" style="display: none;">
+        <div class="header">
+            <h2>S'inscrire</h2>
+            <hr>
+        </div>
+        <div class="body_user">
+            <form action="#" method="post">
                 <div class="row">
-                    <label for="old-pass" class="form-label">Ancien mot de passe</label>
-                    <input type="password" name="old-pass" id="old-pass" class="form-class">
+                    <label for="username" class="form-label">Nom d'utilisateur</label>
+                    <input type="text" name="username" id="username" class="form-class" placeholder="ex: Diallo Saratou">
                 </div>
                 <div class="row">
-                    <label for="new-pass" class="form-label">Nouveau mot de passe</label>
-                    <input type="password" name="new-pass" id="new-pass" class="form-class">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" name="email" id="email" placeholder="ex: email@gmail.com">
                 </div>
                 <div class="row">
-                    <label for="confirm-pass" class="form-label">Confirmation nouveau mot de passe</label>
-                    <input type="password" name="confirm-pass" id="confirm-pass" class="form-class">
+                    <label for="password" class="form-label">Mot de passe</label>
+                    <input type="password" class="form-class" id="password">
                 </div>
+                <div>
+                    <input type="button" name="signin" id="signin" value="S'inscrire" class="btn actif">
+                </div>
+                <br><hr class="c-ou"> ou <hr class="c-ou"><br>
+                <div>
+                    <input type="button" name="connect" id="connect" value="S'identifier" class="btn">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="connexion">
+        <div class="header">
+            <h2>S'identifier</h2>
+            <hr>
+        </div>
+        <div class="body_user">
+            <form action="#" method="post">
                 <div class="row">
-                    <input type="button" id="editer-pass" class="btn-class" value="Modifier">
-                    <input type="button" id="reset-edit" class="btn-class" value="Quitter">
+                    <label for="username" class="form-label">Nom d'utilisateur</label>
+                    <input type="text" name="username" id="login" class="form-class" placeholder="ex: diallo">
+                </div>                    
+                <div class="row">
+                    <label for="password" class="form-label">Mot de passe</label>
+                    <input type="password" class="form-class" id="pass">
                 </div>
+                <br>
+                <div>
+                    <input type="button" name="login" id="btn-login" value="S'dentifier" class="btn actif">                        
+                </div><br>                    
+                    <hr class="c-ou"> ou <hr class="c-ou"><br>
+                <div>
+                    <input type="button" name="signin" value="S'inscrire" id="btn-sign" class="btn">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="logout-modal" id="profil_modal" style="display: none;">
+        <div>
+            <h2>Profil
+            <hr>
+            <h4 id="signed_user"></h4>
+            <div class="row">
+                <input type="button" name="edit_pass" id="edit_pass" class="btn-class" value="Editer Mot de Passe">
+                <input type="button" name="signout" id="logout" class="btn-class" value="Se déconnecter">
             </div>
         </div>
-        <script type="module" src="main.js"></script>    
-    </body>
+    </div>
+
+    <div class="edit-pass-modal" id="edit-pass-modal" style="display: none;">
+        <div id="">
+            <h4>Modification du mot de passe
+            <hr>
+            <div class="row">
+                <label for="old-pass" class="form-label">Ancien mot de passe</label>
+                <input type="password" name="old-pass" id="old-pass" class="form-class">
+            </div>
+            <div class="row">
+                <label for="new-pass" class="form-label">Nouveau mot de passe</label>
+                <input type="password" name="new-pass" id="new-pass" class="form-class">
+            </div>
+            <div class="row">
+                <label for="confirm-pass" class="form-label">Confirmation nouveau mot de passe</label>
+                <input type="password" name="confirm-pass" id="confirm-pass" class="form-class">
+            </div>
+            <div class="row">
+                <input type="button" id="editer-pass" class="btn-class" value="Modifier">
+                <input type="button" id="reset-edit" class="btn-class" value="Quitter">
+            </div>
+        </div>
+    </div>
+    <script type="module" src="main.js"></script>    
+</body>
 </html>

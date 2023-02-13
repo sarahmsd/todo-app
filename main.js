@@ -1,8 +1,8 @@
-import { LocalStorageToArray, USER } from "./storagemodule";
-import { getCatByUser, stuffCatsInSelect, stuffElement } from "./commons";
-import { displayCats } from "./categorymodule";
-import { task_category, displayTaks } from "./taskmodule";
-import { inscription_div, connexion_div } from "./usermodule";
+import { LocalStorageToArray, USER } from "./storagemodule.js";
+import { getCatByUser, stuffCatsInSelect, stuffElement } from "./commons.js";
+import { displayCats } from "./categorymodule.js";
+import { task_category, displayTaks } from "./taskmodule.js";
+import { inscription_div, connexion_div } from "./usermodule.js";
 
 export let body = document.body;
 export let main_div = document.getElementById('main_div');
